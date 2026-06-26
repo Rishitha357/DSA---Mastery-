@@ -8,6 +8,7 @@ Approach:
 Time Complexity: O(n²)
 Space Complexity: O(1)
 
+Code:
 
 class Solution {
     public int[] twoSum(int[] nums, int target) {
