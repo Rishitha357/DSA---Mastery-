@@ -1,23 +1,23 @@
 /*
-680. Valid Palindrome II
+520. Detect Capital
 
-Given a string s, return true if the s can be a palindrome after
-deleting at most one character from it.
+We define the usage of capitals in a word to be right when one of the
+following cases holds:
+
+1. All letters in this word are capitals, like "USA".
+2. All letters in this word are not capitals, like "leetcode".
+3. Only the first letter in this word is capital, like "Google".
+
+Given a string word, return true if the usage of capitals in it is right.
 
 Example 1:
 
-Input: s = "aba"
+Input: word = "USA"
 Output: true
 
 Example 2:
 
-Input: s = "abca"
-Output: true
-Explanation: You could delete the character 'c'.
-
-Example 3:
-
-Input: s = "abc"
+Input: word = "FlaG"
 Output: false
 
 */
@@ -26,38 +26,21 @@ Output: false
 
 class Solution {
 
-    public boolean validPalindrome(String s) {
+    public boolean detectCapitalUse(String word) {
 
-        int left = 0;
-        int right = s.length() - 1;
-
-        while (left < right) {
-
-            if (s.charAt(left) != s.charAt(right)) {
-
-                return isPalindrome(s, left + 1, right) ||
-                       isPalindrome(s, left, right - 1);
-            }
-
-            left++;
-            right--;
+        if (word.equals(word.toUpperCase())) {
+            return true;
         }
 
-        return true;
-    }
-
-    private boolean isPalindrome(String s, int left, int right) {
-
-        while (left < right) {
-
-            if (s.charAt(left) != s.charAt(right)) {
-                return false;
-            }
-
-            left++;
-            right--;
+        if (word.equals(word.toLowerCase())) {
+            return true;
         }
 
-        return true;
+        if (Character.isUpperCase(word.charAt(0)) &&
+            word.substring(1).equals(word.substring(1).toLowerCase())) {
+            return true;
+        }
+
+        return false;
     }
 }
